@@ -32,8 +32,8 @@ after_success: #use prod dockerfiles now so no need to specify dockerfile name
 deploy:
   provider: elasticbeanstalk
   region: "us-east-1"
-  app: "multi-docker"
-  env: "Multi-docker-env"
+  app: "multi-fib"
+  env: "Multi-fib-env"
   bucket_name: "elasticbeanstalk-us-east-1-381492306175"
   bucket_path: "docker-multi"
   on:
