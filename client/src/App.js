@@ -14,11 +14,14 @@ function App() {
     <Link to="/otherpage">Other Page</Link>
       </header> */}
 <div>
+  <h3>Welcome to Fibonacci Generator</h3>
+  <h6>Enter an index to find its value</h6>
   <Route exact path="/" component={Fib} />
   <Route exact path="/otherpage" component={OtherPage} />
 
 
 </div>
+<Link to="/otherpage">Other Page</Link>
     </div>
     </Router>
 

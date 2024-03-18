@@ -1,0 +1,40 @@
+{
+    //orginally needed this before new Amazon Linux 2023 platform
+    //all been replaced in prod docker-compose.yml
+    // the docker-compose-dev.yml is for local dev
+
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "stephenc0821/multi-client", 
+            "hostname": "client",
+            "essential": false
+        }, 
+        {
+            "name": "server",
+            "image": "stephenc0821/multi-server", 
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "stephenc0821/multi-worker", 
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "stephenc0821/multi-nginx", 
+            "essential": true,
+            "portMappings": [{
+                "hostPort": 80,
+                "containerPort": 80
+            }],
+            "links": [
+                "client", "server"
+            ]
+        }
+    ]
+
+}
