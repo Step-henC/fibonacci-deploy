@@ -2,7 +2,8 @@ FROM nginx
 
 #specify file to overwrite existing conf file in filesystem
 COPY ./default.conf  /etc/nginx/conf.d/default.conf 
-
+COPY ./10-types-hash.conf  /etc/nginx/conf.d
+ 
 #it'll start on its own, this is it
 
 # as a separate production dockerfile
