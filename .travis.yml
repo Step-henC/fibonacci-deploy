@@ -29,14 +29,14 @@ after_success: #use prod dockerfiles now so no need to specify dockerfile name
   
 
 
-deploy:
-  provider: elasticbeanstalk
-  region: "us-east-1"
-  app: "frontend"
-  env: "Frontend-env-1"
-  bucket_name: "elasticbeanstalk-us-east-1-381492306175"
-  bucket_path: "frontend"
-  on:
-    branch: master
-  access_key_id: "$AWS_FRONTEND_KEY"
-  secret_access_key: "$AWS_FRONTEND_SECRET" #added aws cli keys/secret to travis settings
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "us-east-1"
+#   app: "frontend"
+#   env: "Frontend-env-1"
+#   bucket_name: "elasticbeanstalk-us-east-1-381492306175"
+#   bucket_path: "frontend"
+#   on:
+#     branch: master
+#   access_key_id: "$AWS_FRONTEND_KEY"
+#   secret_access_key: "$AWS_FRONTEND_SECRET" #added aws cli keys/secret to travis settings
