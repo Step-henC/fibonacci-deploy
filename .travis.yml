@@ -17,6 +17,16 @@ after_success: #use prod dockerfiles now so no need to specify dockerfile name
   - docker build -t stephenc0821/multi-worker ./worker
   - docker build -t stephenc0821/multi-nginx ./nginx
 
+  # Log into docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # push built images to docker hub
+  - docker push stephenc0821/multi-client
+  - docker push stephenc0821/multi-nginx
+  - docker push stephenc0821/multi-servergit
+  - docker push stephenc0821/multi-worker
+
+  
 
 
 deploy:
