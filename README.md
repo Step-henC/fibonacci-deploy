@@ -11,4 +11,8 @@
     We can also see this in our nginx default.conf when we route requests to the container/hostname/domain/url name
     * at least one service has to be essential in dockerrun.aws.json
     * also nginx has no hostname because no other container service directly reaches it. Same with worker
+
+    However, now with new Amazon linux machines we do not need the dockerrun.aws.json files. 
+    Just a docker compose. 
+    
      
