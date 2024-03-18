@@ -23,7 +23,7 @@ after_success: #use prod dockerfiles now so no need to specify dockerfile name
   # push built images to docker hub
   - docker push stephenc0821/multi-client
   - docker push stephenc0821/multi-nginx
-  - docker push stephenc0821/multi-servergit
+  - docker push stephenc0821/multi-server
   - docker push stephenc0821/multi-worker
 
   
