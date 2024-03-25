@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: server-deployment
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      component: server
+  template: 
+    metadata:
+      labels: 
+        component: server #must match the matchLabels
+    spec: 
+      containers: 
+        - name: server
+          image: stephenc0821/multi-server
+          ports: 
+            - containerPort: 5000
+          env: 
+            - name: REDIS_HOST
+              value: redis-cluster-ip-server
+            - name: REDIS_PORT
+              value: '6379'
+            - name: PGUSER
+              value: postgres
+            - name: PGHOST
+              value: postgres-cluster-ip-service
+            - name: PGPORT
+              value: '5432'
+            - name: PGDATABSE
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              valueFrom:  # made secret: kubectl create secret generic pgpassword --from-literal PGPASSWORD=anypasswordhere
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD
+
+            # TODO add env var

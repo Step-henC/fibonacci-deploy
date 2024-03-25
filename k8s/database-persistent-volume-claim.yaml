@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim #not instance of storage but ad attached to pod config for k8s to statically or dynamically find storage
+metadata: 
+  name: database-persistent-volume-claim
+spec: 
+  accessModes: #three types, ReadOnlyMany = multi nodes can read and ReadWriteMany = multi nodes can read and write to it
+    - ReadWriteOnce #only one node can read and write. K8s will need to find storage option to support this access mode
+  resources: 
+    requests:
+      storage: 2Gi #tell k8s that we need 2 gigabytes of storage
+  #storageClassName: another option. We are using defailt storage class kubectl describe storageclass
+                      # in a cloud environ kubernetes will choose storage location in clouds. Defaults to AWS blockstore
+
+      
+  

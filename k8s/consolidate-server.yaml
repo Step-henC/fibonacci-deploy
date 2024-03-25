@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: server-deployment
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      component: server
+  template: 
+    metadata:
+      labels: 
+        component: server #must match the matchLabels
+    spec: 
+      containers: 
+        - name: server
+          image: stephenc0821/mulit-server
+          ports: 
+            - containerPort: 5000
+
+            # TODO add env var
+---
+
+# the three dashes let you place mutli configs into single file
+# may not be best practice tho
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: server-cluster-ip-service
+spec: 
+  type: ClusterIP 
+  selector:
+    component: server #says what pods service should provide access to
+  ports: #same nomenclature of nodePort , only port and targetPort
+    - port: 5000 #server index.js listens to port 5000
+      targetPort: 5000 #container port, does not have to be same
