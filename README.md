@@ -1,18 +1,14 @@
+# How To Run
 
+Project built with docker and kubernetes. Assuming Docker Desktop with Kubernetes enabled in distro (Ubuntu for Windows)
+
+Go to root directory of this root project and type the following in the CLI
+    kubectl apply -f k8s
+
+This will apply config for entire k8s directory.
 
 # Background 
-    Multi-container project with nginx reverse-proxy server routing requests to serever (api) module and client module. 
-    Automated testing and deployment with Travis CI.
-    As a multicontiner project, Travis needs to push all images to Docker hub using personal login credentials
-    saved in Travis CI enviornment variables
-    The dockerrun.aws.json file will go to AWS ECS since Beanstalk cannot natively read docker-compose files.
-    In dockerrun.aws.json, the hostname is the same as the services name in the docker-compose, since the service
-    is essentially making a url of the container name.
-    We can also see this in our nginx default.conf when we route requests to the container/hostname/domain/url name
-    * at least one service has to be essential in dockerrun.aws.json
-    * also nginx has no hostname because no other container service directly reaches it. Same with worker
 
-    However, now with new Amazon linux machines we do not need the dockerrun.aws.json files. 
-    Just a docker compose. 
-    
+Below is an overview of our kubernetes cluster set up. Courtesy of Stephen Grider udemy course. Networking provided by ingress-service with controller routing requests to pod replicas. Ingress-nginx bypass clusterIP service to access deployments directly in the event of sticky sessions. CI/CD with Travis CI and deployed to GCP. 
+![schema](./Screenshot (38).png)    
      
